@@ -4,14 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "env-cmd -f ./.env.dev nodemon --watch src/** --exec ts-node src/index.ts",
+    "dev": "env-cmd -f ./.env.dev nodemon src/index.ts",
     "build dev": "env-cmd -f ./.env.dev tsc",
-    "start": "env-cmd -f ./.env.dev nodemon node dist/index.js"
+    "start": "env-cmd -f ./.env.dev node dist/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.14",
     "@types/node": "^18.11.9",
+    "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",
     "nodemon": "^2.0.20",
     "socket.io-event-types": "^3.0.1",
@@ -28,7 +29,8 @@
     "process": "^0.11.10",
     "reflect-metadata": "^0.1.13",
     "socket.io": "^4.5.3",
-    "typeorm": "^0.3.10"
+    "typeorm": "^0.3.10",
+    "uuid": "^9.0.0"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",

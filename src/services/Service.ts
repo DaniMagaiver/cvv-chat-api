@@ -1,8 +1,10 @@
 import { isMongoId } from "class-validator";
 import { MongoRepository } from "typeorm";
+import { MongoFindManyOptions } from "typeorm/find-options/mongodb/MongoFindManyOptions";
+import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 
-export default abstract class Service<T>{
-    private repository: MongoRepository<T>;
+export default abstract class Service<T> {
+  private repository: MongoRepository<T>;
 
   constructor(repository: MongoRepository<T>) {
     this.repository = repository;
@@ -13,7 +15,7 @@ export default abstract class Service<T>{
     if (!isuuid) throw new Error("ID inválido");
   }
 
-  create(data: any) {
+  create(data: T) {
     return this.repository.save(data);
   }
 
@@ -35,8 +37,12 @@ export default abstract class Service<T>{
     return this.repository.softDelete(id);
   }
 
-  update(id: string, data: any) {
+  update(id: string, data: QueryDeepPartialEntity<T>) {
     this.isValidId(id);
     return this.repository.update(id, data);
+  }
+
+  query(query: MongoFindManyOptions<T>) {
+    return this.repository.find(query);
   }
 }

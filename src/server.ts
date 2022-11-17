@@ -14,7 +14,6 @@ console.log(`\nConectando a base de chat ⚆_⚆...\n`);
 database
   .initialize()
   .then(() => {
-    database.runMigrations();
     console.log(`\nConectado com sucesso a base de chat ~(￣▽￣)~*!\n`);
   })
   .catch((error) => {
