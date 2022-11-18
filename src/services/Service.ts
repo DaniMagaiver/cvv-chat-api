@@ -10,7 +10,7 @@ export default abstract class Service<T> {
     this.repository = repository;
   }
 
-  protected isValidId(id: string) {
+  protected isValidId(id: any) {
     const isuuid = isMongoId(id);
     if (!isuuid) throw new Error("ID inválido");
   }
@@ -32,12 +32,12 @@ export default abstract class Service<T> {
     return this.repository.findOne(id);
   }
 
-  remove(id: string) {
+  remove(id: any) {
     this.isValidId(id);
     return this.repository.softDelete(id);
   }
 
-  update(id: string, data: QueryDeepPartialEntity<T>) {
+  update(id: any, data: QueryDeepPartialEntity<T>) {
     this.isValidId(id);
     return this.repository.update(id, data);
   }

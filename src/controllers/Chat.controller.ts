@@ -28,8 +28,8 @@ export default class ChatController {
       const [firstPatient] = await chatService.firstQueue();
       firstPatient.volunteerId = volunteerId;
       firstPatient.status = "inAttendance";
-
-      await chatService.update(firstPatient.id, firstPatient);
+      console.log(firstPatient);
+      await chatService.update(firstPatient._id.toString(), firstPatient);
       return response.status(200).json(firstPatient);
     } catch (error) {
       return response.status(400).json({ message: error.message });

@@ -1,15 +1,11 @@
-import {
-  IsDate,
-  IsIn,
-  IsNotEmpty,
-  IsString,
-} from "class-validator";
+import { IsDate, IsIn, IsNotEmpty, IsString } from "class-validator";
 import { Column, Entity, ObjectIdColumn } from "typeorm";
+import { ObjectID } from "bson";
 
 @Entity()
 export default class Chat {
   @ObjectIdColumn({ name: "_id" })
-  id: string;
+  _id: ObjectID;
 
   @IsNotEmpty()
   @IsString()

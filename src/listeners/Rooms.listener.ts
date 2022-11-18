@@ -1,7 +1,6 @@
 import { Socket } from "socket.io";
+import { v4 } from "uuid";
 
-//TODO: Implementar fila
-import {} from "../services";
 export default class RoomsListener {
   static onConnect(socket: Socket) {
     const roomId = socket.handshake.query.roomId as string;
@@ -11,7 +10,7 @@ export default class RoomsListener {
 
   private static onMessage(roomId: string, socket: Socket) {
     return async (message: { to: string; from: string; content: string }) => {
-      socket.to(roomId).emit("message", message);
+      socket.to(roomId).emit("message", { ...message, _id: v4() });
     };
   }
 }
